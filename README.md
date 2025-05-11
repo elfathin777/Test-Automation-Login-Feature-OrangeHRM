@@ -1,22 +1,23 @@
 # 🧪 OrangeHRM Login Automation Test with Cypress
 
-This project automates the login functionality of [OrangeHRM Demo](https://opensource-demo.orangehrmlive.com/) using Cypress.  
-It includes multiple login scenarios (valid, invalid, empty input), and captures a screenshot after each test run.
+This project contains automated tests for the login feature of [OrangeHRM Demo](https://opensource-demo.orangehrmlive.com/) using Cypress.  
+It includes positive and negative test cases, and automatically captures a screenshot after each test.
 
 ---
 
 ## 📁 Project Structure
 
+```
+
 cypress/
 └── e2e/
-└── login.cy.js # Main test file
-└── screenshots/ # Screenshots saved here after each test
+└── login.cy.js          # Main test file with all login test cases
+└── screenshots/             # Automatically saved screenshots
 └── support/
-cypress.config.js # Cypress configuration
-README.md # This file
+cypress.config.js              # Cypress configuration file
+README.md                      # Project documentation
 
-yaml
-Copy code
+````
 
 ---
 
@@ -24,84 +25,108 @@ Copy code
 
 ### 1. Install Dependencies
 
-Make sure you have Node.js installed. Then install Cypress:
+Ensure you have Node.js installed. Then, run:
 
 ```bash
 npm install
-Or if Cypress isn't installed yet:
+````
 
-bash
-Copy code
+If Cypress is not installed yet:
+
+```bash
 npm install cypress --save-dev
-2. Run the Tests
-You can run the tests using:
+```
 
-a. Cypress UI (Interactive Mode)
-bash
-Copy code
+---
+
+### 2. Run the Tests
+
+#### Option A: Interactive Mode
+
+Launch Cypress UI to run tests manually:
+
+```bash
 npx cypress open
-Then select login.cy.js and run it.
+```
 
-b. Headless Mode (Terminal)
-bash
-Copy code
+Select the test file `login.cy.js`.
+
+#### Option B: Headless Mode
+
+Run all tests in the terminal:
+
+```bash
 npx cypress run
-This will also generate screenshots and videos (if enabled).
+```
 
-🧪 Test Scenarios
-The test file includes the following cases:
+Screenshots will be saved automatically after each test.
 
-✅ Login with valid username and valid password
+---
 
-❌ Login with invalid username and invalid password
+## 🧪 Test Scenarios
 
-❌ Login with invalid username and valid password
+This suite tests the following login scenarios:
 
-❌ Login with valid username and invalid password
+* ✅ User login with valid username and valid password
+* ❌ Login fails with invalid username and invalid password
+* ❌ Login fails with invalid username and valid password
+* ❌ Login fails with valid username and invalid password
+* ❌ Login fails with lowercase username and valid password
+* ❌ Login fails with valid username and uppercase password
+* ❌ Login fails with both fields empty
+* ❌ Login fails with empty username and valid password
+* ❌ Login fails with valid username and empty password
 
-❌ Login with lowercase username and valid password
+Each test case ends with a screenshot capture.
 
-❌ Login with uppercase password and valid username
+---
 
-❌ Login with empty username and password
+## 📸 Screenshots
 
-❌ Login with empty username and valid password
+Screenshots are saved to:
 
-❌ Login with valid username and empty password
-
-Each test ends with a screenshot capture, saved automatically.
-
-📸 Screenshots
-Screenshots are stored in the folder:
-
-bash
-Copy code
+```
 cypress/screenshots/
-Each file is named based on the test title (describe + it block).
+```
 
-🛠 Configuration
-Make sure your cypress.config.js looks like this:
+The filename will match the test title for easy identification.
 
-javascript
-Copy code
+---
+
+## 🛠 Configuration
+
+Make sure your `cypress.config.js` includes:
+
+```js
 const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      // Add node events if needed
+      // Node event listeners can be added here
     },
     baseUrl: 'https://opensource-demo.orangehrmlive.com/',
   },
   screenshotOnRunFailure: true,
   screenshotsFolder: 'cypress/screenshots',
 });
-To capture screenshots after every test case (not only on failure), add this to your test file:
+```
 
-javascript
-Copy code
+To enable screenshot capture after every test (not just failures), add this to your `login.cy.js`:
+
+```js
 afterEach(function () {
   cy.screenshot(Cypress.mocha.getRunner().test.fullTitle());
 });
-📄 License
-This is a demo test suite for educational purposes.
+```
+
+---
+
+## 📄 License
+
+This is a demo automation project created for educational and testing purposes.
+
+```
+
+---
+
