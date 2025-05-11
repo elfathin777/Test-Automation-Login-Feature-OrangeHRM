@@ -93,40 +93,9 @@ The filename will match the test title for easy identification.
 
 ---
 
-## 🛠 Configuration
-
-Make sure your `cypress.config.js` includes:
-
-```js
-const { defineConfig } = require('cypress');
-
-module.exports = defineConfig({
-  e2e: {
-    setupNodeEvents(on, config) {
-      // Node event listeners can be added here
-    },
-    baseUrl: 'https://opensource-demo.orangehrmlive.com/',
-  },
-  screenshotOnRunFailure: true,
-  screenshotsFolder: 'cypress/screenshots',
-});
-```
-
-To enable screenshot capture after every test (not just failures), add this to your `login.cy.js`:
-
-```js
-afterEach(function () {
-  cy.screenshot(Cypress.mocha.getRunner().test.fullTitle());
-});
-```
-
----
-
 ## 📄 License
 
 This is a demo automation project created for educational and testing purposes.
-
-```
 
 ---
 
