@@ -97,5 +97,4 @@ The filename will match the test title for easy identification.
 
 This is a demo automation project created for educational and testing purposes.
 
----
 
